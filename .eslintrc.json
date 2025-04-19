@@ -1,0 +1,116 @@
+{
+  "extends": [
+    "airbnb-base",
+    "prettier",
+    "plugin:jest/all",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["jest", "@typescript-eslint"],
+  "root": true,
+  "globals": {},
+  "rules": {
+    "jest/prefer-strict-equal": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "error",
+    "default-param-last": "off",
+    "jest/no-hooks": "off",
+    "indent": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "semi": ["error", "always"],
+    "no-template-curly-in-string": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "quote-props": ["error", "as-needed"],
+    "import/no-cycle": [
+      2,
+      {
+        "ignoreExternal": true
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": 0,
+    "camelcase": "off",
+    "@typescript-eslint/indent": "off",
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "import/no-unresolved": [
+      2,
+      {
+        "commonjs": true,
+        "amd": true
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "jest/prefer-expect-assertions": "off",
+    "comma-dangle": ["error", "never"],
+    "import/extensions": "off",
+    "no-trailing-spaces": "error",
+    "max-len": [
+      "error",
+      {
+        "code": 150,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "linebreak-style": 0
+  },
+  "parser": "@typescript-eslint/parser",
+  "env": {},
+  "overrides": [
+    {
+      "files": ["serverless.ts"],
+      "rules": {
+        "import/no-import-module-exports": "off"
+      }
+    },
+    {
+      "files": ["src/core/middlewares/http-error.middleware.ts"],
+      "rules": {
+        "no-param-reassign": "off"
+      }
+    },
+    {
+      "files": [
+        "src/database/functions/dynamodb/query-item.ts",
+        "src/database/functions/dynamodb/scan-item.ts"
+      ],
+      "rules": {
+        "no-await-in-loop": "off"
+      }
+    }
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      },
+      "alias": {
+        "map": [
+          ["@src", "./src"],
+          ["@tests", "./tests"]
+        ],
+        "extensions": [".ts", ".js"]
+      }
+    }
+  }
+}

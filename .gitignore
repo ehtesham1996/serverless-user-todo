@@ -1,0 +1,24 @@
+# package directories
+/node_modules/
+jspm_packages
+
+# Serverless directories
+.serverless
+.esbuild
+.DS_STORE
+
+# Webpack directories
+.webpack
+.eslintcache
+
+# Exlcuding env files
+.env*
+
+# Dynamodb directories
+.dynamodb
+
+# Exluding jest coverage file
+/coverage/
+
+# Excluding webpack dist file
+/dist/

@@ -1,0 +1,198 @@
+openapi: 3.1.0
+x-stoplight:
+  id: 7cj3ycis9cbgs
+info:
+  title: Serverless Todo API
+  version: '1.0'
+  summary: Serverless Todo App coding challenge done for serverless code guru.
+  description: A basic implementation of todo api's for user.
+  contact:
+    name: Ehtesham
+    url: 'https://ehtesham1996.github.io'
+    email: ehteasham@gmail.com
+servers:
+  - url: 'http://localhost:3000/dev'
+paths:
+  /user-todo:
+    post:
+      summary: Create User Todo
+      operationId: post-user-todo
+      responses:
+        '201':
+          description: Created
+      tags:
+        - user-todo
+      description: Endpoint to create a user-todo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  userId: string
+                  title: string
+                  description: string
+              properties:
+                userId:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+              required:
+                - userId
+                - title
+                - description
+    get:
+      summary: Get All User Todo
+      operationId: get-user-todo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        userId:
+                          type: string
+                        todoId:
+                          type: string
+                        description:
+                          type: string
+                        title:
+                          type: string
+                        date:
+                          type: string
+                x-examples:
+                  Example 1:
+                    success: true
+                    error: false
+                    message: Fetched Data
+                    data:
+                      - userId: d2e53e8a-7713-11ed-a1eb-0242ac120002
+                        todoId: '1670517407639'
+                        description: string
+                        title: string
+                        date: '2022-12-08T16:36:47.639Z'
+      tags:
+        - user-todo
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+          required: true
+      description: Get all todos for a user
+  '/user-todo/{todoId}':
+    parameters:
+      - schema:
+          type: string
+        name: todoId
+        in: path
+        required: true
+    get:
+      summary: Get User Todo By Id
+      tags:
+        - user-todo
+      responses: {}
+      operationId: get-user-todo-todoId
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+          required: true
+    put:
+      summary: Update User Todo Item
+      operationId: put-user-todo-todoId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - user-todo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+              required:
+                - userId
+                - title
+                - description
+    delete:
+      summary: Delete User Todo
+      operationId: delete-user-todo-todoId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - user-todo
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+          required: true
+      description: Delete the todo of a user
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      examples:
+        - id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: '1997-10-31'
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - emailVerified
