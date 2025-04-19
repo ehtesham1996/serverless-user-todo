@@ -9,7 +9,7 @@ const region: any = "${opt:region, 'us-east-1'}";
 const stage = "${opt:stage, 'dev'}";
 
 const service: Serverless = {
-  service: 'serverless-todo-code-challenge',
+  service: 'serverless-user-todo',
   frameworkVersion: '3',
   package: {
     individually: true,
