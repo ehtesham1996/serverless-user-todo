@@ -24,7 +24,6 @@ const service: Serverless = {
     'serverless-esbuild',
     'serverless-dynamodb',
     'serverless-prune-plugin',
-    'serverless-dotenv-plugin',
     'serverless-deployment-bucket',
     'serverless-offline'
   ],
